@@ -47,8 +47,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
         }
 
         var item = document.createElement("div");
-        console.log(grid);
-        console.log(item);
         salvattore["append_elements"](grid, [item]);
         item.outerHTML = photoCode;
       }
