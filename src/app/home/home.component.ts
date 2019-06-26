@@ -1,10 +1,8 @@
 import { Component, OnInit, AfterViewInit } from "@angular/core";
 import { photos, photoTemplate } from "./data";
 
-declare var jQuery: any;
 declare var $: any;
 declare var salvattore: any;
-//declare var document: any;
 
 @Component({
   selector: "app-home",
