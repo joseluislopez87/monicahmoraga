@@ -10,10 +10,9 @@ declare var salvattore: any;
   styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit, AfterViewInit {
-
   ngAfterViewInit(): void {
     salvattore.init();
-    this.selectCategory(undefined);
+    this.selectCategory(null);
   }
 
   constructor() {}
@@ -27,10 +26,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     var grid = document.querySelector("#mhm-board");
 
     $.each(photos, function(index, photo) {
-      if (
-        category === undefined ||
-        (photo.cat != undefined && photo.cat == category)
-      ) {
+      if (category === null || (photo.cat != null && photo.cat == category)) {
         var photoCode = photoTemplate.replace(/\[filename\]/g, photo.filename);
         photoCode = photoCode.replace(
           /\[title\]/g,
@@ -53,29 +49,31 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   magnifPopup() {
-		$('.image-popup').magnificPopup({
-			type: 'image',
-			removalDelay: 300,
-			mainClass: 'mfp-with-zoom',
-			titleSrc: 'title',
-			gallery:{
-				enabled:true
-			},
-			zoom: {
-				enabled: true, // By default it's false, so don't forget to enable it
+    $(".image-popup").magnificPopup({
+      type: "image",
+      removalDelay: 300,
+      mainClass: "mfp-with-zoom",
+      titleSrc: "title",
+      gallery: {
+        enabled: true
+      },
+      zoom: {
+        enabled: true, // By default it's false, so don't forget to enable it
 
-				duration: 300, // duration of the effect, in milliseconds
-				easing: 'ease-in-out', // CSS transition easing function
+        duration: 300, // duration of the effect, in milliseconds
+        easing: "ease-in-out", // CSS transition easing function
 
-				// The "opener" function should return the element from which popup will be zoomed in
-				// and to which popup will be scaled down
-				// By defailt it looks for an image tag:
-				opener: function(openerElement) {
-				// openerElement is the element on which popup was initialized, in this case its <a> tag
-				// you don't need to add "opener" option if this code matches your needs, it's defailt one.
-				return openerElement.is('img') ? openerElement : openerElement.find('img');
-				}
-			}
-		});
-	};
+        // The "opener" function should return the element from which popup will be zoomed in
+        // and to which popup will be scaled down
+        // By defailt it looks for an image tag:
+        opener: function(openerElement) {
+          // openerElement is the element on which popup was initialized, in this case its <a> tag
+          // you don't need to add "opener" option if this code matches your needs, it's defailt one.
+          return openerElement.is("img")
+            ? openerElement
+            : openerElement.find("img");
+        }
+      }
+    });
+  }
 }
